@@ -21,10 +21,11 @@ function AddTask({ onAddTask }) {
 
   const handleClick = () => {
     onAddTask({ id: uuidv4(), ...task });
+    setTask({ task: "", priority: "highest", isCompleted: false });
   };
 
   return (
-    <div className="w-1/2 bg-[#f1f3f5] flex flex-col items-start p-4 rounded shadow">
+    <div className="w-1/2 bg-[#f1f3f5] flex flex-col items-start p-4 rounded shadow ">
       <div className="w-full flex justify-center items-center space-x-3">
         <input
           type="text"

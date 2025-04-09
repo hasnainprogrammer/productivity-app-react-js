@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddTask from "./components/AddTask";
 import TasksList from "./components/TasksList";
 
 function App() {
   const [tasks, setTasks] = useState([]);
 
+  useEffect(() => {
+    setTasks(JSON.parse(localStorage.getItem("myTasks")));
+  }, []);
+
   const addTask = (newTask) => {
     if (newTask.task !== "") {
+      localStorage.setItem("myTasks", JSON.stringify([...tasks, newTask]));
       setTasks((prevState) => [...prevState, newTask]);
     } else {
       alert("please fill up the fields");
@@ -14,6 +19,9 @@ function App() {
   };
 
   const deleteTask = (taskId) => {
+    let tasks = JSON.parse(localStorage.getItem("myTasks"));
+    tasks = tasks.filter((task) => task.id !== taskId);
+    localStorage.setItem("myTasks", JSON.stringify(tasks));
     setTasks((prevState) => prevState.filter((task) => task.id !== taskId));
   };
 
