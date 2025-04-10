@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AddTask from "./components/AddTask";
 import TasksList from "./components/TasksList";
+import Footer from "./components/Footer";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -44,6 +45,7 @@ function App() {
         onDeleteTask={deleteTask}
         onCompletedTask={completedTask}
       />
+      <Footer />
     </div>
   );
 }
